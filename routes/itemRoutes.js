@@ -2,12 +2,23 @@
 const express = require("express");
 const router = express.Router();
 
-// Import controller functions
-const { getAllItems, addItem } = require("../controllers/itemController");
+const {
+  getAllItems,
+  getItemById,
+  addItem,
+  replaceItem,
+  updateItem,
+  deleteItem,
+} = require("../controllers/itemController");
 
-// Define routes
-router.get("/", getAllItems);
-router.post("/", addItem);
+// Collection routes
+router.get("/", getAllItems);     // GET /items
+router.post("/", addItem);        // POST /items
 
-// Export the router
+// Item routes
+router.get("/:id", getItemById);  // GET /items/:id
+router.put("/:id", replaceItem);  // PUT /items/:id
+router.patch("/:id", updateItem); // PATCH /items/:id
+router.delete("/:id", deleteItem);// DELETE /items/:id
+
 module.exports = router;
